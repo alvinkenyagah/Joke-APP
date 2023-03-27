@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      background: url("https://r4.wallpaperflare.com/wallpaper/142/751/831/landscape-anime-digital-art-fantasy-art-wallpaper-9b468c3dc3116f4905f43bc9cddc0cf0.jpg");
+
+      /* Background image is centered vertically and horizontally at all times */
+      background-position: center center;
+
+      /* Background image doesn't tile */
+      background-repeat: no-repeat;
+
+      /* Background image is fixed in the viewport so that it doesn't move when
+  the content's height is greater than the image's height */
+      background-attachment: fixed;
+
+      /* This is what makes the background image rescale based
+  on the container's size */
+      background-size: cover;
+
+      /* Set a background color that will be displayed
+  while the background image is loading */
+      background-color: #464646;
+
+      /* backdrop-filter: blur(12px); */
+
+      font-family: poppins;
+
+      height: 100vh;
+      width: 100%;
+      color: azure;
+    }
+
+  </style>
+
+  <body>
+    <div id="bored">
+      <div>
+        <h1 style="text-align: center">JOKE OF THE DAY</h1>
+      </div>
+
+      <div id="display">
+        <button onclick="funny()" style="margin-left: 40%">
+          Generate joke
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function funny() {
+        let display = document.querySelector("#display");
+
+        fetch("https://official-joke-api.appspot.com/random_joke")
+          .then((res) => res.json())
+          .then((data) => {
+            let p = document.createElement("h1");
+            p.style.textAlign = "center";
+            p.textContent = data.setup + " " + data.punchline;
+
+            display.appendChild(p);
+          })
+          .catch((error) => console.log(error));
+      }
+    </script>
+  </body>
+</html>
